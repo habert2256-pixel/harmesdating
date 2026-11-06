@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160d10">
+<title>Messages Preview | Harmesdating</title>
+<style>
+:root{--bg:#160d10;--panel:#26171d;--panel2:#1d1217;--gold:#d8b879;--muted:#c2b2b7;--line:rgba(255,255,255,.13);--white:#fffaf7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+header{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;background:#160d10}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font:25px Georgia,serif;display:flex;align-items:center;gap:10px}.mark{height:34px;width:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
+.links{display:flex;gap:22px;color:#d4c5c9;font-size:12px}.links a.active,.links a:hover{color:var(--gold)}.mode{font-size:10px;color:var(--gold);border:1px solid rgba(216,184,121,.5);padding:8px 11px}
+main{padding:34px 0 55px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+h1{font:500 38px Georgia,serif;margin:9px 0 23px}.chat-shell{display:grid;grid-template-columns:310px 1fr;min-height:590px;border:1px solid var(--line);background:var(--panel);box-shadow:0 20px 60px rgba(0,0,0,.22)}
+.sidebar{border-right:1px solid var(--line);min-width:0}.side-head{padding:20px;border-bottom:1px solid var(--line)}.side-head h2{font:22px Georgia,serif;margin:0 0 13px}
+.search{width:100%;padding:10px 11px;background:#1b1116;border:1px solid var(--line);color:white;border-radius:3px;font-size:11px;outline:none}
+.thread{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer}
+.thread.active{background:rgba(216,184,121,.09);border-left:2px solid var(--gold);padding-left:16px}
+.avatar{height:40px;width:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#82515e,#38212b);border:1px solid rgba(216,184,121,.4);color:#f5dba7;font:16px Georgia,serif;flex:0 0 auto}
+.thread-info{min-width:0;flex:1}.thread-name{font-size:12px;font-weight:650}.thread-last{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:5px}
+.thread-time{font-size:9px;color:#a99da0;align-self:flex-start}
+.conversation{display:flex;flex-direction:column;min-width:0}.chat-head{padding:16px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.chat-head .name{font:20px Georgia,serif}.chat-head .presence{font-size:10px;color:var(--gold);margin-top:4px}
+.chat-head .safety{margin-left:auto;color:#d8cbd0;font-size:10px;border:1px solid var(--line);padding:8px 10px;background:transparent;cursor:pointer}
+.messages{padding:23px;display:flex;flex-direction:column;gap:14px;flex:1;min-height:330px;background:linear-gradient(rgba(29,18,23,.3),rgba(29,18,23,.3))}
+.day{text-align:center;color:#9e8e94;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.bubble{max-width:min(78%,430px);padding:11px 13px;border-radius:8px;font-size:12px;line-height:1.6;background:#38242c;color:#f6eaed;align-self:flex-start}
+.bubble.mine{background:#6f1d35;align-self:flex-end}.stamp{font-size:9px;color:#b9a8ae;margin-top:5px;text-align:right}
+.composer{padding:15px 18px;border-top:1px solid var(--line);display:flex;gap:10px}.composer input{flex:1;min-width:0;padding:12px;background:#1b1116;border:1px solid var(--line);border-radius:3px;color:white;font-size:11px;outline:none}
+.composer button{background:var(--gold);border:0;border-radius:3px;padding:0 17px;color:#211419;font-weight:700;font-size:11px;cursor:pointer}
+.disclaimer{padding:12px 16px;color:#b7a8ad;font-size:10px;line-height:1.55;border-top:1px solid var(--line)}
+.notice{margin-top:18px;padding:13px 15px;border-left:2px solid var(--gold);background:rgba(216,184,121,.07);font-size:10px;line-height:1.65;color:#d5c7cb}
+footer{border-top:1px solid var(--line);padding:18px 0;color:#918187;font-size:10px}
+@media(max-width:720px){.links{display:none}.chat-shell{grid-template-columns:1fr;min-height:0}.sidebar{border-right:0;border-bottom:1px solid var(--line)}.thread-list{display:flex;overflow-x:auto}.thread{min-width:180px;border-right:1px solid var(--line);border-bottom:0}.thread.active{border-left:0;border-bottom:2px solid var(--gold);padding:16px 18px}.side-head{padding:14px 16px}.side-head h2{font-size:19px}.messages{min-height:300px;padding:17px}.chat-head{padding:14px 16px}.chat-head .safety{font-size:9px;padding:7px}.composer{padding:12px}.bubble{max-width:88%}}
+@media(max-width:420px){h1{font-size:32px}.thread{min-width:155px;padding:13px 12px}.thread.active{padding:13px 12px}.avatar{height:34px;width:34px}.thread-last{max-width:100px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="index.html"><span class="mark">H</span>Harmesdating</a>
+  <nav class="links"><a href="discover.html">Discover</a><a href="matches.html">Matches</a><a href="messages.html" class="active">Messages</a><a href="profile.html">Profile</a></nav>
+  <span class="mode">Preview mode</span>
+</div></header>
+<main class="wrap">
+  <div class="eyebrow">Conversations</div>
+  <h1>Messages</h1>
+  <section class="chat-shell" aria-label="Messaging interface preview">
+    <aside class="sidebar">
+      <div class="side-head"><h2>Inbox</h2><input class="search" id="search" placeholder="Search sample conversations" aria-label="Search conversations"></div>
+      <div class="thread-list" id="threadList">
+        <div class="thread active" data-person="Jordan" data-initial="J" data-status="Sample conversation">
+          <div class="avatar">J</div><div class="thread-info"><div class="thread-name">Jordan <span style="color:var(--gold);font-size:9px">· sample</span></div><div class="thread-last">That sounds like a great place to visit.</div></div><div class="thread-time">10:42</div>
+        </div>
+        <div class="thread" data-person="Taylor" data-initial="T" data-status="Sample conversation">
+          <div class="avatar">T</div><div class="thread-info"><div class="thread-name">Taylor <span style="color:var(--gold);font-size:9px">· sample</span></div><div class="thread-last">What kind of music do you enjoy?</div></div><div class="thread-time">Yesterday</div>
+        </div>
+        <div class="thread" data-person="Casey" data-initial="C" data-status="Sample conversation">
+          <div class="avatar">C</div><div class="thread-info"><div class="thread-name">Casey <span style="color:var(--gold);font-size:9px">· sample</span></div><div class="thread-last">I just finished a really good book.</div></div><div class="thread-time">Mon</div>
+        </div>
+      </div>
+    </aside>
+    <section class="conversation">
+      <div class="chat-head">
+        <div class="avatar" id="chatAvatar">J</div>
+        <div><div class="name" id="chatName">Jordan</div><div class="presence">Fictional sample conversation</div></div>
+        <button class="safety" id="safetyButton" type="button">Safety options</button>
+      </div>
+      <div class="messages" id="messages" aria-live="polite">
+        <div class="day">Sample conversation · Today</div>
+        <div class="bubble">Hi! I noticed you enjoy exploring new places. Have you found any interesting spots lately?<div class="stamp">10:35</div></div>
+        <div class="bubble mine">I have! I enjoy finding quiet cafés and local bookshops.<div class="stamp">10:39</div></div>
+        <div class="bubble">That sounds like a great place to visit. Any recommendations?<div class="stamp">10:42</div></div>
+      </div>
+      <form class="composer" id="messageForm">
+        <input id="messageInput" placeholder="Message preview is disabled" aria-label="Message" disabled>
+        <button type="submit" disabled style="opacity:.55;cursor:not-allowed">Send</button>
+      </form>
+      <div class="disclaimer">Messaging is disabled in this prototype. No messages can be sent, received or stored.</div>
+    </section>
+  </section>
+  <div class="notice"><strong>Production requirements:</strong> A live messaging service needs authenticated adult-only accounts, mutual-match authorization, server-side access checks, encrypted transport, abuse reporting, blocking, moderation, rate limits, data-retention rules and account deletion. Never rely on a front-end-only age checkbox or client-side controls for access protection.</div>
+</main>
+<footer><div class="wrap">Harmesdating · Messaging interface mockup · All names and conversations are fictional.</div></footer>
+<script>
+const samples={
+  Jordan:[["in","Hi! I noticed you enjoy exploring new places. Have you found any interesting spots lately?","10:35"],["out","I have! I enjoy finding quiet cafés and local bookshops.","10:39"],["in","That sounds like a great place to visit. Any recommendations?","10:42"]],
+  Taylor:[["in","What kind of music do you enjoy?","Yesterday"],["out","I like discovering different genres and artists.","Yesterday"],["in","Same here. Finding a new favourite song is always fun.","Yesterday"]],
+  Casey:[["in","I just finished a really good book.","Mon"],["out","Nice! What did you like most about it?","Mon"],["in","The characters and the way the story came together.","Mon"]]
+};
+document.querySelectorAll(".thread").forEach(thread=>{
+  thread.addEventListener("click",()=>{
+    document.querySelectorAll(".thread").forEach(t=>t.classList.remove("active"));
+    thread.classList.add("active");
+    const person=thread.dataset.person;
+    document.getElementById("chatName").textContent=person;
+    document.getElementById("chatAvatar").textContent=thread.dataset.initial;
+    const box=document.getElementById("messages");box.innerHTML='<div class="day">Sample conversation · Fictional</div>';
+    samples[person].forEach(([kind,txt,time])=>{
+      const bubble=document.createElement("div");bubble.className="bubble"+(kind==="out"?" mine":"");
+      bubble.textContent=txt;
+      const stamp=document.createElement("div");stamp.className="stamp";stamp.textContent=time;bubble.appendChild(stamp);box.appendChild(bubble);
+    });
+  });
+});
+document.getElementById("search").addEventListener("input",e=>{
+  const q=e.target.value.toLowerCase();
+  document.querySelectorAll(".thread").forEach(t=>t.style.display=t.dataset.person.toLowerCase().includes(q)?"flex":"none");
+});
+document.getElementById("safetyButton").addEventListener("click",()=>alert("In the live service, this area will contain block and report controls. They are not active in this mockup."));
+document.getElementById("messageForm").addEventListener("submit",e=>e.preventDefault());
+</script>
+</body>
+</html>
