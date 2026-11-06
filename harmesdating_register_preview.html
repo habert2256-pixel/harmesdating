@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#160d10">
+  <title>Create an Account | Harmesdating</title>
+  <style>
+    :root{--bg:#160d10;--panel:#26171d;--gold:#d8b879;--wine:#6f1d35;--text:#fffaf7;--muted:#c2b2b7;--line:rgba(255,255,255,.14)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 80% 10%,#49202d 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1080px,calc(100% - 36px));margin:auto}
+    header{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+    .brand{font:25px Georgia,serif;display:flex;align-items:center;gap:10px}.mark{height:34px;width:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
+    main{min-height:calc(100vh - 76px);display:grid;place-items:center;padding:44px 0}
+    .layout{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}
+    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:2.5px;font-size:10px;font-weight:700}
+    h1{font:500 clamp(40px,5vw,60px)/1.08 Georgia,serif;letter-spacing:-1.5px;margin:18px 0}
+    .intro{color:var(--muted);font-size:14px;line-height:1.8;max-width:430px}
+    .points{display:grid;gap:16px;margin-top:32px}.point{display:flex;gap:12px;color:#e8dce0;font-size:13px;align-items:flex-start}.point b{color:var(--gold)}
+    .card{background:rgba(38,23,29,.94);border:1px solid rgba(216,184,121,.36);padding:32px;box-shadow:0 25px 80px rgba(0,0,0,.3)}
+    .card h2{font:30px Georgia,serif;margin:0 0 8px}.sub{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 24px}
+    label{display:block;font-size:11px;color:#eadfe2;margin:15px 0 7px}
+    input{width:100%;padding:13px 12px;background:#1b1116;border:1px solid var(--line);border-radius:3px;color:white;font:13px system-ui;outline:none}
+    input:focus{border-color:var(--gold)}input::placeholder{color:#85767b}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .notice{margin-top:18px;padding:13px;border-left:2px solid var(--gold);background:rgba(216,184,121,.08);font-size:11px;color:#d7c8cc;line-height:1.6}
+    .check{display:flex;align-items:flex-start;gap:9px;margin-top:16px;font-size:11px;line-height:1.5;color:#d8cbd0}.check input{width:15px;height:15px;margin:1px 0;accent-color:var(--gold);flex:0 0 auto}
+    button{width:100%;margin-top:22px;border:0;background:var(--gold);color:#211419;padding:14px;border-radius:3px;font-weight:700;cursor:pointer}
+    button:hover{background:#edcf91}.status{min-height:35px;color:var(--gold);font-size:12px;line-height:1.5;margin-top:12px}
+    .back{display:inline-block;margin-top:20px;color:var(--gold);font-size:12px}
+    footer{padding:18px 0 26px;color:#918187;font-size:10px;line-height:1.6;border-top:1px solid var(--line)}
+    @media(max-width:760px){.layout{grid-template-columns:1fr;gap:30px}.layout>section:first-child{display:none}.card{padding:25px 20px}.wrap{width:calc(100% - 28px)}}
+  </style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="index.html"><span class="mark">H</span>Harmesdating</a></div></header>
+<main>
+  <div class="wrap layout">
+    <section>
+      <div class="eyebrow">A more meaningful way to meet</div>
+      <h1>Begin with<br><span style="color:var(--gold)">something real.</span></h1>
+      <p class="intro">A thoughtful dating experience should put respect, privacy and genuine connection first.</p>
+      <div class="points">
+        <div class="point"><b>✦</b><span>Build a profile that reflects your interests and values.</span></div>
+        <div class="point"><b>✦</b><span>Discover people and connect through mutual interest.</span></div>
+        <div class="point"><b>✦</b><span>Keep control of your privacy and who can contact you.</span></div>
+      </div>
+    </section>
+    <section class="card">
+      <div class="eyebrow">Harmesdating account</div>
+      <h2>Registration preview</h2>
+      <p class="sub">This is a front-end demonstration only. It does not create an account or transmit information.</p>
+      <form id="demoForm">
+        <div class="row">
+          <div><label for="first">First name</label><input id="first" autocomplete="given-name" placeholder="First name" required></div>
+          <div><label for="last">Last name</label><input id="last" autocomplete="family-name" placeholder="Last name" required></div>
+        </div>
+        <label for="email">Email address</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="password">Password</label><input id="password" type="password" autocomplete="new-password" minlength="12" placeholder="At least 12 characters" required>
+        <div class="notice"><strong>Adults only:</strong> Harmesdating is intended for people aged 18 and over. A checkbox is not age verification; a real launch requires a suitable age-assurance process and secure backend.</div>
+        <label class="check"><input id="age" type="checkbox" required><span>I confirm that I am at least 18 years old.</span></label>
+        <button type="submit">Preview registration</button>
+        <div class="status" id="status" aria-live="polite"></div>
+      </form>
+      <a class="back" href="index.html">← Back to homepage</a>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap">Prototype only. Do not enter real personal information. Authentication, secure password handling, age assurance, consent, privacy controls and account deletion must be implemented and tested before launch.</div></footer>
+<script>
+  document.getElementById("demoForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const status = document.getElementById("status");
+    if (!document.getElementById("age").checked) {
+      status.textContent = "This service is intended for adults aged 18 and over.";
+      return;
+    }
+    status.textContent = "Preview complete. No account was created and no information was saved or sent.";
+    this.reset();
+  });
+</script>
+</body>
+</html>
