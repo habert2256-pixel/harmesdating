@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160d10">
+<title>Profile Preview | Harmesdating</title>
+<style>
+:root{--bg:#160d10;--panel:#26171d;--gold:#d8b879;--wine:#6f1d35;--white:#fffaf7;--muted:#c2b2b7;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 5%,#49202d 0,transparent 34%),var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto}header{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+.brand{font:25px Georgia,serif;display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}.mark{height:34px;width:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
+main{padding:48px 0 70px}.eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:10px;font-weight:700}
+h1{font:500 clamp(36px,5vw,54px)/1.1 Georgia,serif;margin:13px 0}.intro{color:var(--muted);font-size:13px;line-height:1.7;max-width:620px}
+.grid{display:grid;grid-template-columns:1fr 1.15fr;gap:25px;margin-top:34px;align-items:start}
+.card{background:rgba(38,23,29,.94);border:1px solid rgba(216,184,121,.3);padding:25px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.preview-photo{height:300px;border-radius:3px;overflow:hidden;background:linear-gradient(145deg,#865c65,#38212b);display:grid;place-items:center;color:#f5dba7;font:18px Georgia,serif;text-align:center;padding:20px}
+.preview-photo span{border:1px solid rgba(216,184,121,.65);padding:13px 18px}
+.profile-name{font:30px Georgia,serif;margin:18px 0 5px}.sample-tag{color:var(--gold);font-size:10px;letter-spacing:1.4px;text-transform:uppercase}
+.meta{color:var(--muted);font-size:12px;margin-top:9px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid rgba(216,184,121,.38);color:#ead8b7;padding:7px 10px;border-radius:30px;font-size:11px}
+h2{font:24px Georgia,serif;margin:0 0 7px}.hint{font-size:11px;color:var(--muted);line-height:1.6;margin:0 0 20px}
+label{display:block;font-size:11px;color:#eadfe2;margin:15px 0 7px}
+input,textarea,select{width:100%;padding:12px;background:#1b1116;border:1px solid var(--line);border-radius:3px;color:white;font:13px system-ui;outline:none}
+textarea{min-height:90px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{margin-top:20px;width:100%;padding:13px;border:0;border-radius:3px;background:var(--gold);color:#211419;font-weight:700;cursor:pointer}
+.status{min-height:34px;color:var(--gold);font-size:11px;line-height:1.5;margin-top:10px}
+.note{margin-top:22px;padding:13px;border-left:2px solid var(--gold);background:rgba(216,184,121,.07);color:#d6c8cc;font-size:11px;line-height:1.6}
+footer{border-top:1px solid var(--line);padding:20px 0;color:#918187;font-size:10px;line-height:1.6}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.preview-photo{height:230px}.card{padding:20px}main{padding-top:35px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="index.html"><span class="mark">H</span>Harmesdating</a></div></header>
+<main class="wrap">
+  <div class="eyebrow">Stage 3 · Profile design</div>
+  <h1>A profile that feels like you.</h1>
+  <p class="intro">This is a static design preview of the profile setup experience. It uses fictional sample content and does not publish, save or transmit personal information.</p>
+  <div class="grid">
+    <section class="card">
+      <div class="preview-photo"><span>PHOTO PREVIEW<br><small>Replace with a licensed image</small></span></div>
+      <div class="sample-tag">Example profile · fictional</div>
+      <div class="profile-name">Alex Morgan</div>
+      <div class="meta">Creative · Curious · Loves exploring new places</div>
+      <p style="color:#d8cbd0;font-size:13px;line-height:1.7">“I enjoy good conversations, discovering new cafés and learning something new every day.”</p>
+      <div class="chips"><span class="chip">Travel</span><span class="chip">Books</span><span class="chip">Music</span><span class="chip">Food</span></div>
+    </section>
+    <section class="card">
+      <h2>Profile details</h2>
+      <p class="hint">Sample fields for the future profile editor. Avoid entering real personal details in this prototype.</p>
+      <form id="profileForm">
+        <label for="displayName">Display name</label><input id="displayName" placeholder="Choose a display name" maxlength="30">
+        <div class="two">
+          <div><label for="city">General area</label><input id="city" placeholder="City or region"></div>
+          <div><label for="interests">Main interest</label><select id="interests"><option value="">Choose one</option><option>Arts & culture</option><option>Travel</option><option>Food</option><option>Sports</option><option>Books</option><option>Music</option><option>Technology</option></select></div>
+        </div>
+        <label for="bio">About me</label><textarea id="bio" maxlength="300" placeholder="Write a short introduction (up to 300 characters)"></textarea>
+        <label for="looking">What matters to you?</label><select id="looking"><option value="">Choose a value</option><option>Kindness</option><option>Honesty</option><option>Humour</option><option>Shared interests</option><option>Personal growth</option></select>
+        <button type="submit">Preview profile details</button>
+        <div class="status" id="status" aria-live="polite"></div>
+      </form>
+      <div class="note"><strong>Before launch:</strong> Profile publishing needs authenticated accounts, secure storage, privacy settings, moderation, blocking/reporting tools and an adult-only age-assurance process. This page does not implement those systems.</div>
+    </section>
+  </div>
+</main>
+<footer><div class="wrap">Harmesdating profile mockup · Fictional example · No data is saved or sent.</div></footer>
+<script>
+document.getElementById("profileForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const name=document.getElementById("displayName").value.trim();
+  const status=document.getElementById("status");
+  status.textContent=name ? "Preview ready for “"+name.replace(/[<>]/g,"")+"”. Nothing has been saved or published." : "Add a display name to preview this example.";
+});
+</script>
+</body>
+</html>
