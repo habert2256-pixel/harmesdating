@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160d10">
+<title>Login Preview | Harmesdating</title>
+<style>
+:root{--bg:#160d10;--panel:#26171d;--gold:#d8b879;--muted:#c2b2b7;--line:rgba(255,255,255,.14);--white:#fffaf7}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 78% 15%,#49202d 0,transparent 36%),var(--bg);color:var(--white);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}
+header{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center}.brand{font:25px Georgia,serif;display:flex;align-items:center;gap:10px}.mark{height:34px;width:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold)}
+main{min-height:calc(100vh - 76px);display:grid;place-items:center;padding:45px 0}.grid{display:grid;grid-template-columns:1fr 430px;gap:65px;align-items:center}
+.eyebrow{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase}
+h1{font:500 clamp(40px,5vw,58px)/1.1 Georgia,serif;letter-spacing:-1.5px;margin:18px 0}.intro{color:var(--muted);font-size:14px;line-height:1.8;max-width:440px}
+.card{background:rgba(38,23,29,.95);border:1px solid rgba(216,184,121,.38);padding:32px;box-shadow:0 25px 80px rgba(0,0,0,.3)}
+.card h2{font:30px Georgia,serif;margin:0 0 8px}.sub{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 24px}
+label{display:block;font-size:11px;color:#eadfe2;margin:16px 0 7px}input{width:100%;padding:13px 12px;background:#1b1116;border:1px solid var(--line);border-radius:3px;color:white;font:13px system-ui;outline:none}
+input:focus{border-color:var(--gold)}input::placeholder{color:#85767b}
+.password-row{display:flex;justify-content:space-between;align-items:center}.password-row label{margin-bottom:7px}.muted-link{font-size:11px;color:var(--gold)}
+button{width:100%;margin-top:22px;border:0;background:var(--gold);color:#211419;padding:14px;border-radius:3px;font-weight:700;cursor:pointer}button:hover{background:#edcf91}
+.status{min-height:38px;color:var(--gold);font-size:11px;line-height:1.5;margin-top:12px}.back{display:inline-block;margin-top:19px;color:var(--gold);font-size:12px}
+.notice{margin-top:22px;padding:13px;border-left:2px solid var(--gold);background:rgba(216,184,121,.07);color:#d6c8cc;font-size:11px;line-height:1.6}
+footer{border-top:1px solid var(--line);padding:18px 0 24px;color:#918187;font-size:10px;line-height:1.6}
+@media(max-width:780px){.grid{grid-template-columns:1fr;gap:28px}.grid>section:first-child{display:none}.card{padding:25px 20px}.wrap{width:calc(100% - 28px)}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="index.html"><span class="mark">H</span>Harmesdating</a></div></header>
+<main>
+<div class="wrap grid">
+  <section>
+    <div class="eyebrow">Welcome back</div>
+    <h1>Good to see<br><span style="color:var(--gold)">you again.</span></h1>
+    <p class="intro">A familiar place for thoughtful conversations and meaningful connections.</p>
+  </section>
+  <section class="card">
+    <div class="eyebrow">Harmesdating account</div>
+    <h2>Log in</h2>
+    <p class="sub">This is a visual login prototype. It does not authenticate users or send information.</p>
+    <form id="loginForm">
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="off" placeholder="you@example.com" required>
+      <div class="password-row"><label for="password">Password</label><a href="#" class="muted-link" id="forgot">Forgot password?</a></div>
+      <input id="password" type="password" autocomplete="off" placeholder="Enter password" required>
+      <button type="submit">Preview login</button>
+      <div class="status" id="status" aria-live="polite"></div>
+    </form>
+    <a class="back" href="index.html">← Back to homepage</a>
+    <div class="notice"><strong>Prototype only:</strong> Do not enter real account credentials. Secure authentication, password hashing, rate limiting, account recovery and adult age assurance must be implemented on a backend before launch.</div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap">Harmesdating · Login interface preview · No information is saved, transmitted or verified.</div></footer>
+<script>
+document.getElementById("loginForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  document.getElementById("status").textContent="This is a design preview. Login is not connected and no information was sent.";
+  this.reset();
+});
+document.getElementById("forgot").addEventListener("click",function(e){
+  e.preventDefault();
+  document.getElementById("status").textContent="Password recovery will be added after secure account authentication is implemented.";
+});
+</script>
+</body>
+</html>
